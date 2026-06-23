@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: product-service
+  namespace: cloudcart
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: product-service
+
+  template:
+    metadata:
+      labels:
+        app: product-service
+
+    spec:
+      containers:
+      - name: product-service
+        image: 114171679862.dkr.ecr.us-east-1.amazonaws.com/product-service:v1
+        ports:
+        - containerPort: 5002
+        imagePullPolicy: Always
